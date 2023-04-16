@@ -1,27 +1,22 @@
 import React, {useContext} from 'react';
-import {StyleSheet, View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
 
 import { BlogContext } from '../context/BlogContext';
-const IndexScreen = () => {
+const IndexScreen = (props) => {
+
     const Context = useContext(BlogContext);
     
     return(
         <View>
             <FlatList
-            data={Context.blogPosts}
+            data={Context.state}
             renderItem={({item}) => {
                 return(
                     <Text>{item.title}</Text>
-                    
                 )
             }}
             />
-            <TouchableOpacity onPress={() => {
-                        const currentPosts = [...Context.blogPosts];
-                        
-                        Context.setBlogPosts([...currentPosts, {title: `Blog Post #${Context.blogPosts.length + 1}`}])
-                        
-                    }}><Text>Add Blog Post</Text></TouchableOpacity>
+            <Button onPress={() => props.navigation.navigate('Create')} title="Go to Create Screen" /> 
         </View>
     )
 };

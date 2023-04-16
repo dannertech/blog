@@ -1,5 +1,5 @@
-import React, {createContext, useState} from 'react';
-
+import React, {createContext, useState, useReducer} from 'react';
+import {reducer} from '../reducer/BlogReducer.js';
 export const BlogContext = createContext();
 
 
@@ -14,10 +14,13 @@ export const BlogProvider = ({children}) => {
             title: 'Blog Post #2'
         }
     ]
-    const [blogPosts, setBlogPosts] = useState(data); 
+    //useState here
+    //const [blogPosts, setBlogPosts] = useState(data); 
+    //useReducer here
+    const [state, dispatch] = useReducer(reducer,data);
    
 return(
-    <BlogContext.Provider value={{blogPosts, setBlogPosts}}>
+    <BlogContext.Provider value={{state, dispatch}}>
         {children}
     </BlogContext.Provider>
 )
