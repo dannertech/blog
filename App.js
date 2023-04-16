@@ -5,12 +5,15 @@ import CreateScreen from './src/screens/CreateScreen';
 import ShowScreen from './src/screens/ShowScreen';
 import IndexScreen from './src/screens/IndexScreen';
 import EditScreen from './src/screens/EditScreen';
+import { BlogProvider } from './src/context/BlogContext';
 
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  
   return (
+    <BlogProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home' screenOptions={{
         headerTitle: 'Blogs'
@@ -21,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Create" component={CreateScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+    </BlogProvider>
   );
 };
 
