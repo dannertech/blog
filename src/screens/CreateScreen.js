@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, TextInput} from 'react-native';
-import {Button} from '@react-native-material/core';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {Button, TextInput} from '@react-native-material/core';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { BlogContext } from '../context/BlogContext';
 
 const CreateScreen = () => {
@@ -8,9 +9,14 @@ const CreateScreen = () => {
     const [text, setText] = useState('');
     return(
         <View style={styles.mainView}>
-            <Text>Create Screen</Text>
-            <Text>Enter Blog Post</Text>
-            <TextInput placeholder="Enter Post Here" onChangeText={(text) =>setText(text)}/>
+            
+            <TextInput placeholder="What's on your mind?" onChangeText={(text) =>setText(text)} 
+            leading={() => {
+                return(
+                    <MaterialCommunityIcons name="brain" size={24} color="black"/>
+                )
+            }}
+            />
             <View style={styles.submitButtonView}>
             <Button title="Add Blog Post" onPress={() => {
                         Context.dispatch({type: 'ADD_POST', payload: `Blog Post #${Context.state.length + 1}`})
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
     },
     mainView: {
         display: 'flex',
-        alignItems: 'center',
+        marginHorizontal: 40,
         justifyContent: 'center',
         flex: 1,
     }
