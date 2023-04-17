@@ -33,6 +33,7 @@ const CreateScreen = () => {
                 >
                     <View style={styles.modalView}>
                         <Image source={{uri: 'https://media.giphy.com/media/REJjv9QftuFEI/giphy.gif'}} style={styles.successImage}/>
+                        <Text style={{fontSize: 40, letterSpacing: 15, fontWeight: 'bold', color: 'rgb(110,42,232)'}}>Success!</Text>
                     </View>
                </Modal>
             )}
@@ -68,11 +69,13 @@ const styles = StyleSheet.create({
         height: 200,
         width: 200,
         borderRadius: 100,
+        borderColor: 'rgb(110,42,232)',
+        borderWidth: 10,
         marginVertical: 50,
         alignSelf: 'center',
     },
     modalView: {
-        backgroundColor: 'rgb(110    ,42,232)',
+        backgroundColor: 'white',
         shadowOffset: {
             width: 0,
             height: 2,
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
-        marginTop: 400,
+        marginTop: 300,
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
