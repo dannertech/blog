@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Image, Modal} from 'react-native';
 import {Button, TextInput} from '@react-native-material/core';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { BlogContext } from '../context/BlogContext';
@@ -14,18 +14,31 @@ const CreateScreen = () => {
         if(text.length > 5){
             Context.dispatch({type: 'ADD_POST', payload: text})
             setText('');
-            alert('success')
+            setPostSuccess(true);
+            setTimeout(() => {
+                setPostSuccess(false)
+            }, 10000)
         } else {
             null
         }
-    }
+    };
+
+
     return(
         <View style={styles.mainView}>
             {postSuccess && (
-               alert("success")
+                <Modal
+                animationType='slide'
+                transparent={true}
+                >
+                    <View style={styles.modalView}>
+                        <Image source={{uri: 'https://media.giphy.com/media/REJjv9QftuFEI/giphy.gif'}} style={styles.successImage}/>
+                    </View>
+               </Modal>
             )}
             
             <TextInput placeholder="What's on your mind?" onChangeText={(text) => setText(text)} 
+            value={text}
             leading={() => {
                 return(
                     <MaterialCommunityIcons name="brain" size={24} color="black"/>
@@ -50,6 +63,28 @@ const styles = StyleSheet.create({
         marginHorizontal: 40,
         justifyContent: 'center',
         flex: 1,
+    },
+    successImage: {
+        height: 200,
+        width: 200,
+        borderRadius: 100,
+        marginVertical: 50,
+        alignSelf: 'center',
+    },
+    modalView: {
+        backgroundColor: 'rgb(110    ,42,232)',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowColor: '#000',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        marginTop: 400,
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
     }
 })
 
