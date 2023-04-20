@@ -10,7 +10,10 @@ const CardComponent = (props) => {
             <Text style={styles.textStyle}>{props.title}</Text>
             </View>
             <View style={styles.buttonsView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => props.goToEdit.navigate('Edit', {
+                title: props.title,
+                key: props.key
+            })}>
             <Image source={pencilIcon} style={styles.iconStyle}/>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -36,7 +39,9 @@ buttonsView: {
 },
 iconStyle: {
     height: 30,
-    width: 30
+    width: 30,
+    marginRight: 10,
+    marginTop: 10
 },
 textStyle: {
     fontSize: 20,
