@@ -12,7 +12,8 @@ const CreateScreen = () => {
 
     const submitPost = () => {
         if(text.length > 5){
-            Context.dispatch({type: 'ADD_POST', payload: text})
+            const key = Math.floor(Math.random() * 100000)
+            Context.dispatch({type: 'ADD_POST', payload: {text, key}})
             setText('');
             setPostSuccess(true);
             setTimeout(() => {
