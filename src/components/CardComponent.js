@@ -4,6 +4,7 @@ const trashIcon = require('../imageAssets/trash.png');
 const pencilIcon = require('../imageAssets/pencil.png');
 
 const CardComponent = (props) => {
+
     return(
         <View style={styles.mainView}>
             <View style={styles.textView}>
@@ -12,7 +13,7 @@ const CardComponent = (props) => {
             <View style={styles.buttonsView}>
             <TouchableOpacity onPress={() => props.goToEdit.navigate('Edit', {
                 title: props.title,
-                key: props.key
+                key: props.id
             })}>
             <Image source={pencilIcon} style={styles.iconStyle}/>
             </TouchableOpacity>
