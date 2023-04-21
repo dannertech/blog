@@ -17,9 +17,23 @@ export default function App() {
     <BlogProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={IndexScreen}/>
-        <Stack.Screen name="Show" component={ShowScreen} />
-        <Stack.Screen name="EditScreen" component={EditScreen}/>
+        <Stack.Screen name="Home" component={IndexScreen} options={{
+          header: ((props) => {
+            return <AppBar title="Home" goBack={null} name={undefined}/>
+          })
+        }}/>
+        <Stack.Screen name="Show" component={ShowScreen} options={{
+          header: ((props) => {
+            return <AppBar title="Show" name={undefined} goBack={null}/>
+          })
+        }}/>
+        <Stack.Screen name="Edit" component={EditScreen} options={{
+          header: ((props) => {
+            return (
+              <AppBar goBack={props.navigation.goBack} title="Edit Post" name="keyboard-backspace" />
+            )
+          })
+        }}/>
         <Stack.Screen name="Create" component={CreateScreen} options={{
           header: ((props) => {
             return (

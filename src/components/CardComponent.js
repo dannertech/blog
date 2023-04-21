@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 const trashIcon = require('../imageAssets/trash.png');
 const pencilIcon = require('../imageAssets/pencil.png');
+import { BlogContext } from '../context/BlogContext';
 
 const CardComponent = (props) => {
-
+    const {dispatch} = useContext(BlogContext);
     return(
+        <TouchableOpacity onPress={() => props.goToShow.navigate('Show', {
+            title: props.title
+        })}>
         <View style={styles.mainView}>
+           
             <View style={styles.textView}>
             <Text style={styles.textStyle}>{props.title}</Text>
             </View>
@@ -17,22 +22,24 @@ const CardComponent = (props) => {
             })}>
             <Image source={pencilIcon} style={styles.iconStyle}/>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => dispatch({type:'DELETE_POST', payload: props.id})}>
             <Image source={trashIcon} style={styles.iconStyle}/>
             </TouchableOpacity>
             </View>
         </View>
+        </TouchableOpacity>
     )
 };
 
 const styles = StyleSheet.create({
 mainView: {
-    height: '100%',
+    padding: 10,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderWidth: 3,
-    borderColor: 'black'
+    borderColor: 'black',
+    marginVertical: 15
 },
 buttonsView: {
     flexDirection: 'column',

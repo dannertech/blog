@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-const ShowScreen = () => {
+const ShowScreen = (props) => {
     return(
         <View>
-            <Text>Show Screen</Text>
+            <Text>{props.route.params.title}</Text>
         </View>
     )
 };

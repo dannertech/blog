@@ -8,10 +8,12 @@ export const BlogContext = createContext();
 export const BlogProvider = ({children}) => {
     const data = [
         {
-            title: 'Blog Post #1'
+            title: 'Blog Post #1',
+            key: 12345
         },
         {
-            title: 'Blog Post #2'
+            title: 'Blog Post #2',
+            key: 123456
         }
     ]
     //useState here
