@@ -24,7 +24,7 @@ export default function App() {
         }}/>
         <Stack.Screen name="Show" component={ShowScreen} options={{
           header: ((props) => {
-            return <AppBar title="Show" name={undefined} goBack={null}/>
+            return <AppBar title="Show" goBack={props.navigation.goBack} name="keyboard-backspace"/>
           })
         }}/>
         <Stack.Screen name="Edit" component={EditScreen} options={{

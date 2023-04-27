@@ -5,12 +5,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BlogContext } from '../context/BlogContext';
 
 
-const CreateScreen = () => {
+const CreateScreen = (props) => {
     const Context = useContext(BlogContext);
     const [text, setText] = useState('');
     const [postSuccess, setPostSuccess] = useState(false);
 
-    const submitPost = () => {
+    const submitPost = (navigation) => {
         if(text.length > 5){
             const key = Math.floor(Math.random() * 100000);
             Context.dispatch({type: 'ADD_POST', payload: {title: text, key: key}});
@@ -19,6 +19,7 @@ const CreateScreen = () => {
             setTimeout(() => {
                 setPostSuccess(false)
             }, 10000)
+            navigation.navigate('Index');
         } else {
             null
         }
@@ -49,7 +50,7 @@ const CreateScreen = () => {
             />
             <View style={styles.submitButtonView}>
             <Button title="Add Blog Post" onPress={() => {
-                        submitPost()
+                        submitPost(props.navigation)
                     }} />
             </View>
         </View>
